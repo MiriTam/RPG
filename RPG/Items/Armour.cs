@@ -16,12 +16,12 @@ namespace RPG.Items
 
     internal class Armour : Item
     {
-        public ArmourType Type { get; set;}
+        public ArmourType ArmourType { get; set;}
         public Heroes.Primary Attributes { get; set;}
 
-        public Armour(string name, int levelRequirement, Heroes.Slot slot, ArmourType type, Heroes.Primary attributes) : base(name, levelRequirement)
+        public Armour(string name, int levelRequirement, Heroes.Slot slot, ArmourType armourType, Heroes.Primary attributes) : base(name, levelRequirement)
         {
-            Type = type;
+            ArmourType = armourType;
             Attributes = attributes;
         }
     }
