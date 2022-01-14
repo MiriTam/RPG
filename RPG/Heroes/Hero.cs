@@ -42,6 +42,10 @@ namespace RPG.Heroes
             AllowedArmours = allowedArmours;
         }
 
+        /// <summary>
+        /// Method used to level up a hero. Increase the hero's attributes based on 
+        /// her LevelUpGain attributes.
+        /// </summary>
         public void LevelUp()
         {
             Level++;
@@ -50,6 +54,11 @@ namespace RPG.Heroes
             PrimaryAttributes.Intelligence += LevelUpGain.Intelligence;
         }
 
+        /// <summary>
+        /// Method used to add an item to the hero's equipment.
+        /// </summary>
+        /// <param name="item">The item to added to the hero's equipment.</param>
+        /// <param name="slot">The equipment slot to put the equipment into.</param>
         public void EquipItem(Items.Item item, Slot slot)
         {
             if (item is Items.Weapon)
@@ -64,6 +73,14 @@ namespace RPG.Heroes
             }
         }
 
+        /// <summary>
+        /// Method used to add a weapon to the hero's equipment. Throws an InvalidWeaponException if the weapon is of too 
+        /// high a level, the selected equipment slot is not for weapons, or the hero is not allowed to use that type
+        /// of weapon.
+        /// </summary>
+        /// <param name="weapon">The weapon to be equiped.</param>
+        /// <param name="slot">The slot in which to equip the weapon.</param>
+        /// <exception cref="Exception">InvalidArmourException</exception>
         private void EquipWeapon(Items.Weapon weapon, Slot slot)
         {
             if (weapon.LevelRequirement > Level || slot != Slot.Weapon || !AllowedWeapons.Contains(weapon.WeaponType))
@@ -75,6 +92,14 @@ namespace RPG.Heroes
             }
         }
 
+        /// <summary>
+        /// Method used to add armour to the hero's equipment. Throws an InvalidArmoourException is the armour is of too
+        /// high a level, the selected equipment slot is not for armour, or the hero is not allowed to use that type
+        /// of armour.
+        /// </summary>
+        /// <param name="armour">The armour to be equiped.</param>
+        /// <param name="slot">The slot in which to place the armour.</param>
+        /// <exception cref="Exception"></exception>
         private void EquipArmour(Items.Armour armour, Slot slot)
         {
             if (armour.LevelRequirement > Level || slot == Slot.Weapon || !AllowedArmours.Contains(armour.ArmourType) {
@@ -85,6 +110,10 @@ namespace RPG.Heroes
             }
         }
 
+        /// <summary>
+        /// Method calculates and returns the total damage dealt by the hero based on her attributes and equipment. 
+        /// </summary>
+        /// <returns>The hero's damage.</returns>
         public int Damage() 
         {
             //Get DPS from weapon
@@ -95,7 +124,6 @@ namespace RPG.Heroes
                 dps = weapon.GetDPS();
             }
             else return 1;
-
 
             //Get hero attributes
             Primary totalAttributes = PrimaryAttributes;
@@ -119,6 +147,10 @@ namespace RPG.Heroes
             return dps * (1 + totalPrimaryAttribute/100);
         }
 
+        /// <summary>
+        /// Method creates and returns a string to display the hero's stats.
+        /// </summary>
+        /// <returns>The hero's stats.</returns>
         public override string ToString()
         {
             return $"Name: {Name}" + Environment.NewLine

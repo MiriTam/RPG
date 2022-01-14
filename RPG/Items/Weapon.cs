@@ -31,6 +31,10 @@ namespace RPG.Items
             AttackSpeed = attackSpeed;
         }
        
+        /// <summary>
+        /// Method calculates and returns the weapon's damage per second (DPS).
+        /// </summary>
+        /// <returns>Weapon's DPS.</returns>
         public int GetDPS()
         {
             return Damage * AttackSpeed;
