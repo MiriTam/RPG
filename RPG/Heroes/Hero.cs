@@ -13,8 +13,10 @@ namespace RPG.Heroes
         public Primary PrimaryAttributes;
         public Primary TotalAttributes;
         public Primary LevelUpGain;
+        public Items.WeaponType[] AllowedWeapons { get; set; } 
+        public Items.ArmourType[] AllowedArmours { get; set; }
 
-        public Hero(string name, int strength, int dexterity, int intelligence, int incStrength, int incDext, int incIntel) {
+        public Hero(string name, int strength, int dexterity, int intelligence, int incStrength, int incDext, int incIntel, Items.WeaponType[] allowedWeapons, Items.ArmourType[] allowedArmours) {
             Name = name;
             PrimaryAttributes.Strength = strength;
             PrimaryAttributes.Dexterity = dexterity;
@@ -22,6 +24,8 @@ namespace RPG.Heroes
             LevelUpGain.Strength = incStrength;
             LevelUpGain.Dexterity = incDext;
             LevelUpGain.Intelligence = incIntel;
+            AllowedWeapons = allowedWeapons;
+            AllowedArmours = allowedArmours;
         }
 
         public void Damage() { }

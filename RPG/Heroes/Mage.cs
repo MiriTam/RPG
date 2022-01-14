@@ -8,7 +8,10 @@ namespace RPG.Heroes
 {
     internal class Mage : Hero
     {
-        public Mage(string name) : base(name, 1, 1, 8, 1, 1, 5) { }
+        public static Items.WeaponType[] AllowedW = { Items.WeaponType.Staff, Items.WeaponType.Wand };
+        public static Items.ArmourType[] AllowedA = { Items.ArmourType.Cloth };
+
+        public Mage(string name) : base(name, 1, 1, 8, 1, 1, 5, AllowedW, AllowedA) { }
 
     }
 }

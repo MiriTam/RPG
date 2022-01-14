@@ -8,6 +8,9 @@ namespace RPG.Heroes
 {
     internal class Warrior : Hero
     {
-        public Warrior(string name) : base(name, 5, 2, 1, 3, 2, 1) { }
+        public static Items.WeaponType[] AllowedW = { Items.WeaponType.Axe, Items.WeaponType.Hammer, Items.WeaponType.Sword };
+        public static Items.ArmourType[] AllowedA = { Items.ArmourType.Mail, Items.ArmourType.Plate };
+
+        public Warrior(string name) : base(name, 5, 2, 1, 3, 2, 1, AllowedW, AllowedA) { }
     }
 }
