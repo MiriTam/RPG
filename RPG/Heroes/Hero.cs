@@ -118,5 +118,15 @@ namespace RPG.Heroes
             //Calculate hero damage
             return dps * (1 + totalPrimaryAttribute/100);
         }
+
+        public override string ToString()
+        {
+            return $"Name: {Name}" + Environment.NewLine
+                    + $"Level: {Level}" + Environment.NewLine
+                    + $"Strength: {PrimaryAttributes.Strength}" + Environment.NewLine
+                    + $"Dexterity: {PrimaryAttributes.Dexterity}" + Environment.NewLine
+                    + $"Intelligence: {PrimaryAttributes.Intelligence}" + Environment.NewLine
+                    + $"Damage: {Damage()}";
+        }
     }
 }
