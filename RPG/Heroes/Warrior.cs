@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPG.Heroes
 {
-    internal class Warrior : Hero
+    public class Warrior : Hero
     {
         public static Items.WeaponType[] AllowedW = { Items.WeaponType.Axe, Items.WeaponType.Hammer, Items.WeaponType.Sword };
         public static Items.ArmourType[] AllowedA = { Items.ArmourType.Mail, Items.ArmourType.Plate };

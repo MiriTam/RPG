@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPG.Items
 {
-    enum ArmourType
+    public enum ArmourType
     {
         Cloth,
         Leather,
@@ -14,12 +14,12 @@ namespace RPG.Items
         Plate
     }
 
-    internal class Armour : Item
+    public class Armour : Item
     {
         public ArmourType ArmourType { get; set;}
         public Heroes.Primary Attributes { get; set;}
 
-        public Armour(string name, int levelRequirement, Heroes.Slot slot, ArmourType armourType, Heroes.Primary attributes) : base(name, levelRequirement)
+        public Armour(string name, int levelRequirement, Heroes.Slot slot, ArmourType armourType, Heroes.Primary attributes) : base(name, levelRequirement, slot)
         {
             ArmourType = armourType;
             Attributes = attributes;

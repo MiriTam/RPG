@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPG.Heroes
 {
-    enum Slot
+    public enum Slot
     {
         Head,
         Body,
@@ -14,10 +14,10 @@ namespace RPG.Heroes
         Weapon
     }
 
-    internal abstract class Hero
+    public abstract class Hero
     {
         public string Name { get; set; }
-        public int Level { get; set; }
+        public int Level { get; set; } = 1;
         public Primary PrimaryAttributes;
         public Primary LevelUpGain;
         public Items.WeaponType[] AllowedWeapons { get; set; } 
@@ -102,7 +102,7 @@ namespace RPG.Heroes
         /// <exception cref="Exception"></exception>
         private void EquipArmour(Items.Armour armour, Slot slot)
         {
-            if (armour.LevelRequirement > Level || slot == Slot.Weapon || !AllowedArmours.Contains(armour.ArmourType) {
+            if (armour.LevelRequirement > Level || slot == Slot.Weapon || !AllowedArmours.Contains(armour.ArmourType)) {
                 throw new Exception("InvalidArmourException");
             } else
             {

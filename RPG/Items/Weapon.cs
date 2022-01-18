@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace RPG.Items
 {
 
-    enum WeaponType
+    public enum WeaponType
     {
         Axe,
         Bow,
@@ -18,7 +18,7 @@ namespace RPG.Items
         Wand
     }
 
-    internal class Weapon : Item
+    public class Weapon : Item
     {
         public WeaponType WeaponType { get; set; }
         public int Damage { get; set; }
