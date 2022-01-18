@@ -21,21 +21,21 @@ namespace RPG.Items
     public class Weapon : Item
     {
         public WeaponType WeaponType { get; set; }
-        public int Damage { get; set; }
-        public int AttackSpeed { get; set; }
+        public double Damage { get; set; }
+        public double AttackSpeed { get; set; }
 
-        public Weapon(string name, int levelRequirement, Heroes.Slot slot, WeaponType weaponType, int damage, int attackSpeed) : base (name, levelRequirement, slot)
+        public Weapon(string name, int levelRequirement, Slot slot, WeaponType weaponType, double damage, double attackSpeed) : base (name, levelRequirement, slot)
         {
             WeaponType = weaponType;
             Damage = damage;
             AttackSpeed = attackSpeed;
         }
-       
+
         /// <summary>
         /// Method calculates and returns the weapon's damage per second (DPS).
         /// </summary>
         /// <returns>Weapon's DPS.</returns>
-        public int GetDPS()
+        public double GetDPS()
         {
             return Damage * AttackSpeed;
         }

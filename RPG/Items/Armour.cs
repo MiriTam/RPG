@@ -17,9 +17,9 @@ namespace RPG.Items
     public class Armour : Item
     {
         public ArmourType ArmourType { get; set;}
-        public Heroes.Primary Attributes { get; set;}
+        public Primary Attributes { get; set;}
 
-        public Armour(string name, int levelRequirement, Heroes.Slot slot, ArmourType armourType, Heroes.Primary attributes) : base(name, levelRequirement, slot)
+        public Armour(string name, int levelRequirement, Slot slot, ArmourType armourType, Primary attributes) : base(name, levelRequirement, slot)
         {
             ArmourType = armourType;
             Attributes = attributes;

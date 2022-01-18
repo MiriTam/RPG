@@ -11,9 +11,9 @@ namespace RPG.Items
     {
         public string Name { get; set; }
         public int LevelRequirement { get; set; }
-        public Heroes.Slot Slot { get; set; }
+        public Slot Slot { get; set; }
 
-        public Item(string name, int levelRequirement, Heroes.Slot slot)
+        public Item(string name, int levelRequirement, Slot slot)
         {
             Name = name;
             LevelRequirement = levelRequirement;

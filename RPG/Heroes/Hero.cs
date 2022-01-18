@@ -6,14 +6,6 @@ using System.Threading.Tasks;
 
 namespace RPG.Heroes
 {
-    public enum Slot
-    {
-        Head,
-        Body,
-        Legs,
-        Weapon
-    }
-
     public abstract class Hero
     {
         public string Name { get; set; }
@@ -59,17 +51,17 @@ namespace RPG.Heroes
         /// </summary>
         /// <param name="item">The item to added to the hero's equipment.</param>
         /// <param name="slot">The equipment slot to put the equipment into.</param>
-        public void EquipItem(Items.Item item, Slot slot)
+        public string EquipItem(Items.Item item, Slot slot)
         {
             if (item is Items.Weapon)
             {
                 Items.Weapon weapon = (Items.Weapon)item;
-                EquipWeapon(weapon, slot);
+                return EquipWeapon(weapon, slot);
             }
             else
             {
                 Items.Armour armour = (Items.Armour)item;
-                EquipArmour(armour, slot);
+                return EquipArmour(armour, slot);
             }
         }
 
@@ -81,7 +73,7 @@ namespace RPG.Heroes
         /// <param name="weapon">The weapon to be equiped.</param>
         /// <param name="slot">The slot in which to equip the weapon.</param>
         /// <exception cref="Exception">InvalidArmourException</exception>
-        private void EquipWeapon(Items.Weapon weapon, Slot slot)
+        private string EquipWeapon(Items.Weapon weapon, Slot slot)
         {
             if (weapon.LevelRequirement > Level || slot != Slot.Weapon || !AllowedWeapons.Contains(weapon.WeaponType))
             {
@@ -90,6 +82,7 @@ namespace RPG.Heroes
             {
                 Equipment[slot] = weapon;
             }
+            return "New weapon equiped!";
         }
 
         /// <summary>
@@ -100,7 +93,7 @@ namespace RPG.Heroes
         /// <param name="armour">The armour to be equiped.</param>
         /// <param name="slot">The slot in which to place the armour.</param>
         /// <exception cref="Exception"></exception>
-        private void EquipArmour(Items.Armour armour, Slot slot)
+        private string EquipArmour(Items.Armour armour, Slot slot)
         {
             if (armour.LevelRequirement > Level || slot == Slot.Weapon || !AllowedArmours.Contains(armour.ArmourType)) {
                 throw new Exception("InvalidArmourException");
@@ -108,44 +101,14 @@ namespace RPG.Heroes
             {
                 Equipment[slot] = armour;
             }
+            return "New armour equiped!";
         }
 
         /// <summary>
         /// Method calculates and returns the total damage dealt by the hero based on her attributes and equipment. 
         /// </summary>
         /// <returns>The hero's damage.</returns>
-        public int Damage() 
-        {
-            //Get DPS from weapon
-            int dps = 1;
-            if (Equipment[Slot.Weapon] != null)
-            {
-                Items.Weapon weapon = (Items.Weapon)Equipment[Slot.Weapon];
-                dps = weapon.GetDPS();
-            }
-            else return 1;
-
-            //Get hero attributes
-            Primary totalAttributes = PrimaryAttributes;
-
-            //Get armour attributes
-            foreach (KeyValuePair<Slot, Items.Item> elem in Equipment)
-            {
-                if (elem.Value is Items.Armour)
-                {
-                    Items.Armour armour = (Items.Armour)elem.Value;
-                    totalAttributes.Strength += armour.Attributes.Strength;
-                    totalAttributes.Dexterity += armour.Attributes.Dexterity;
-                    totalAttributes.Intelligence += armour.Attributes.Intelligence;
-                }
-            }
-
-            //Summerize attributes
-            int totalPrimaryAttribute = totalAttributes.Strength + totalAttributes.Dexterity + totalAttributes.Intelligence;
-
-            //Calculate hero damage
-            return dps * (1 + totalPrimaryAttribute/100);
-        }
+        public abstract double Damage();
 
         /// <summary>
         /// Method creates and returns a string to display the hero's stats.
