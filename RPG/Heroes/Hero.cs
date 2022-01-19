@@ -75,10 +75,19 @@ namespace RPG.Heroes
         /// <exception cref="Exception">InvalidArmourException</exception>
         private string EquipWeapon(Items.Weapon weapon, Slot slot)
         {
-            if (weapon.LevelRequirement > Level || slot != Slot.Weapon || !AllowedWeapons.Contains(weapon.WeaponType))
+            if (weapon.LevelRequirement > Level)
             {
-                throw new Exception("InvalidWeaponException");
-            } else
+                throw new InvalidWeaponException("Level too high!");
+            } 
+            else if (slot != Slot.Weapon)
+            {
+                throw new InvalidWeaponException("Not a weapon slot!");
+            } 
+            else if (!AllowedWeapons.Contains(weapon.WeaponType))
+            {
+                throw new InvalidWeaponException("Wrong weapon type!");
+            } 
+            else
             {
                 Equipment[slot] = weapon;
             }
@@ -86,7 +95,7 @@ namespace RPG.Heroes
         }
 
         /// <summary>
-        /// Method used to add armour to the hero's equipment. Throws an InvalidArmoourException is the armour is of too
+        /// Method used to add armour to the hero's equipment. Throws an InvalidArmourException is the armour is of too
         /// high a level, the selected equipment slot is not for armour, or the hero is not allowed to use that type
         /// of armour.
         /// </summary>
@@ -95,9 +104,19 @@ namespace RPG.Heroes
         /// <exception cref="Exception"></exception>
         private string EquipArmour(Items.Armour armour, Slot slot)
         {
-            if (armour.LevelRequirement > Level || slot == Slot.Weapon || !AllowedArmours.Contains(armour.ArmourType)) {
-                throw new Exception("InvalidArmourException");
-            } else
+            if (armour.LevelRequirement > Level) 
+            { 
+                throw new InvalidArmourException("Level too high!");
+            } 
+            else if (slot == Slot.Weapon)
+            {
+                throw new InvalidArmourException("Not an armour slot!");
+            }
+            else if (!AllowedArmours.Contains(armour.ArmourType))
+            {
+                throw new InvalidArmourException("Wrong armour type!");
+            }
+            else
             {
                 Equipment[slot] = armour;
             }

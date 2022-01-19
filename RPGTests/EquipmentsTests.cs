@@ -50,9 +50,10 @@ namespace RPGTests
             RPG.Heroes.Warrior warrior = testWarrior;
             RPG.Items.Weapon level2axe = testAxe;
             testAxe.LevelRequirement = 2;
+            string expectedExceptionMessage = "Level too high!";
 
-            Exception exception = Assert.Throws<Exception>(() => warrior.EquipItem(level2axe, RPG.Slot.Weapon));
-            Assert.Equal(exception.Message, "InvalidWeaponException");
+            Exception exception = Assert.Throws<RPG.InvalidWeaponException>(() => warrior.EquipItem(level2axe, RPG.Slot.Weapon));
+            Assert.Equal(exception.Message, expectedExceptionMessage);
         }
 
         [Fact]
@@ -61,9 +62,10 @@ namespace RPGTests
             RPG.Heroes.Warrior warrior = testWarrior;
             RPG.Items.Armour level2plate = testPlateBody;
             level2plate.LevelRequirement = 2;
+            string expectedExceptionMessage = "Level too high!";
 
-            Exception exception = Assert.Throws<Exception>(() => warrior.EquipItem(level2plate, RPG.Slot.Body));
-            Assert.Equal(exception.Message, "InvalidArmourException");
+            Exception exception = Assert.Throws<RPG.InvalidArmourException>(() => warrior.EquipItem(level2plate, RPG.Slot.Body));
+            Assert.Equal(exception.Message, expectedExceptionMessage);
         }
 
         [Fact]
@@ -71,9 +73,10 @@ namespace RPGTests
         {
             RPG.Heroes.Warrior warrior = testWarrior;
             RPG.Items.Weapon bow = testBow;
+            string expectedExceptionMessage = "Wrong weapon type!";
 
-            Exception exception = Assert.Throws<Exception>(() => warrior.EquipItem(bow, RPG.Slot.Weapon));
-            Assert.Equal(exception.Message, "InvalidWeaponException");
+            Exception exception = Assert.Throws<RPG.InvalidWeaponException>(() => warrior.EquipItem(bow, RPG.Slot.Weapon));
+            Assert.Equal(exception.Message, expectedExceptionMessage);
         }
 
         [Fact]
@@ -81,9 +84,10 @@ namespace RPGTests
         {
             RPG.Heroes.Warrior warrior = testWarrior;
             RPG.Items.Armour cloth = testClothHead;
+            string expectedExceptionMessage = "Wrong armour type!";
 
-            Exception exception = Assert.Throws<Exception>(() => warrior.EquipItem(cloth, RPG.Slot.Head));
-            Assert.Equal(exception.Message, "InvalidArmourException");
+            Exception exception = Assert.Throws<RPG.InvalidArmourException>(() => warrior.EquipItem(cloth, RPG.Slot.Head));
+            Assert.Equal(exception.Message, expectedExceptionMessage);
         }
 
         [Fact]
@@ -92,8 +96,9 @@ namespace RPGTests
             RPG.Heroes.Warrior warrior = testWarrior;
             RPG.Items.Weapon axe = testAxe;
             string message = warrior.EquipItem(axe, RPG.Slot.Weapon);
+            string expectedMessage = "New weapon equiped!";
 
-            Assert.Equal(message, "New weapon equiped!");
+            Assert.Equal(message, expectedMessage);
         }
 
         [Fact]
@@ -102,8 +107,9 @@ namespace RPGTests
             RPG.Heroes.Warrior warrior = testWarrior;
             RPG.Items.Armour plate = testPlateBody;
             string message = warrior.EquipItem(plate, RPG.Slot.Body);
+            string expectedMessage = "New armour equiped!";
 
-            Assert.Equal(message, "New armour equiped!");
+            Assert.Equal(message, expectedMessage);
         }
 
         [Fact]
