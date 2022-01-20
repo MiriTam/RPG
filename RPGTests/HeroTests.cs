@@ -8,152 +8,170 @@ namespace RPGTests
         [Fact]
         public void Hero_IsCreated_ShouldBeLevel1()
         {
+            //Arrange
             RPG.Heroes.Mage mage = new RPG.Heroes.Mage("Tamara");
-            int level = mage.Level;
             int expectedLevel = 1;
-            Assert.Equal(expectedLevel, level);
+
+            //Act
+            int actualLevel = mage.Level;
+
+            //Assert
+            Assert.Equal(expectedLevel, actualLevel);
         }
 
         [Fact]
         public void LevelUp_Hero_ShouldBeLevel2()
         {
+            //Arrange
             RPG.Heroes.Mage mage = new RPG.Heroes.Mage("Tamara");
-            mage.LevelUp();
-            int level = mage.Level;
             int expectedLevel = 2;
-            Assert.Equal(level, expectedLevel);
+            
+            //Act
+            mage.LevelUp();
+            int actualLevel = mage.Level;
+
+            //Assert
+            Assert.Equal(expectedLevel, actualLevel);
         }
 
         [Fact]
         public void Mage_UponCreation_HasCorrectAttributes()
         {
+            //Arrange
             RPG.Heroes.Mage mage = new RPG.Heroes.Mage("Tamara");
-            int strength = mage.PrimaryAttributes.Strength;
-            int expectedStrength = 1;
-            int dexterity = mage.PrimaryAttributes.Dexterity;
-            int expectedDexterity = 1;
-            int intelligence = mage.PrimaryAttributes.Intelligence;
-            int expectedIntelligence = 8;
+            RPG.Primary expectedAttributes = new RPG.Primary();
+            expectedAttributes.Strength = 1;
+            expectedAttributes.Dexterity = 1;
+            expectedAttributes.Intelligence = 8;
 
-            Assert.Equal(strength, expectedStrength);
-            Assert.Equal(dexterity, expectedDexterity);
-            Assert.Equal(intelligence, expectedIntelligence);
+            //Act
+            RPG.Primary actualAttributes = mage.PrimaryAttributes;
+
+            //Assert
+            Assert.Equal(expectedAttributes, actualAttributes);
         }
 
         [Fact]
         public void Ranger_UponCreation_HasCorrectAttributes()
         {
+            //Arrange
             RPG.Heroes.Ranger ranger = new RPG.Heroes.Ranger("Tamara");
-            int strength = ranger.PrimaryAttributes.Strength;
-            int expectedStrength = 1;
-            int dexterity = ranger.PrimaryAttributes.Dexterity;
-            int expectedDexterity = 7;
-            int intelligence = ranger.PrimaryAttributes.Intelligence;
-            int expectedIntelligence = 1;
+            RPG.Primary expectedAttributes = new RPG.Primary();
+            expectedAttributes.Strength = 1;
+            expectedAttributes.Dexterity = 7;
+            expectedAttributes.Intelligence = 1;
 
-            Assert.Equal(strength, expectedStrength);
-            Assert.Equal(dexterity, expectedDexterity);
-            Assert.Equal(intelligence, expectedIntelligence);
+            //Act
+            RPG.Primary actualAttributes = ranger.PrimaryAttributes;
+
+            //Assert
+            Assert.Equal(expectedAttributes, actualAttributes);
         }
 
         [Fact]
         public void Rogue_UponCreation_HasCorrectAttributes()
         {
+            //Arrange
             RPG.Heroes.Rogue rogue = new RPG.Heroes.Rogue("Tamara");
-            int strength = rogue.PrimaryAttributes.Strength;
-            int expectedStrength = 2;
-            int dexterity = rogue.PrimaryAttributes.Dexterity;
-            int expectedDexterity = 6;
-            int intelligence = rogue.PrimaryAttributes.Intelligence;
-            int expectedIntelligence = 1;
+            RPG.Primary expectedAttributes = new RPG.Primary();
+            expectedAttributes.Strength = 2;
+            expectedAttributes.Dexterity = 6;
+            expectedAttributes.Intelligence = 1;
 
-            Assert.Equal(strength, expectedStrength);
-            Assert.Equal(dexterity, expectedDexterity);
-            Assert.Equal(intelligence, expectedIntelligence);
+            //Act
+            RPG.Primary actualAttributes = rogue.PrimaryAttributes;
+
+            //Assert
+            Assert.Equal(expectedAttributes, actualAttributes);
         }
 
         [Fact]
         public void Warrior_UponCreation_HasCorrectAttributes()
         {
+            //Arrange
             RPG.Heroes.Warrior warrior = new RPG.Heroes.Warrior("Tamara");
-            int strength = warrior.PrimaryAttributes.Strength;
-            int expectedStrength = 5;
-            int dexterity = warrior.PrimaryAttributes.Dexterity;
-            int expectedDexterity = 2;
-            int intelligence = warrior.PrimaryAttributes.Intelligence;
-            int expectedIntelligence = 1;
+            RPG.Primary expectedAttributes = new RPG.Primary();
+            expectedAttributes.Strength = 5;
+            expectedAttributes.Dexterity = 2;
+            expectedAttributes.Intelligence = 1;
 
-            Assert.Equal(strength, expectedStrength);
-            Assert.Equal(dexterity , expectedDexterity);
-            Assert.Equal(intelligence, expectedIntelligence);
+            //Act
+            RPG.Primary actualAttributes = warrior.PrimaryAttributes;
+
+            //Assert
+            Assert.Equal(expectedAttributes, actualAttributes);
         }
 
         [Fact]
         public void LevelUp_Mage_HasCorrectAttributes()
         {
+            //Arrange
             RPG.Heroes.Mage mage = new RPG.Heroes.Mage("Tamara");
-            mage.LevelUp();
-            int strength = mage.PrimaryAttributes.Strength;
-            int expectedStrength = 2;
-            int dexterity = mage.PrimaryAttributes.Dexterity;
-            int expectedDexterity = 2;
-            int intelligence = mage.PrimaryAttributes.Intelligence;
-            int expectedIntelligence = 13;
+            RPG.Primary expectedAttributes = new RPG.Primary();
+            expectedAttributes.Strength = 2;
+            expectedAttributes.Dexterity = 2;
+            expectedAttributes.Intelligence = 13;
 
-            Assert.Equal(strength, expectedStrength);
-            Assert.Equal(dexterity, expectedDexterity);
-            Assert.Equal(intelligence, expectedIntelligence);
+            //Act
+            mage.LevelUp();
+            RPG.Primary actualAttributes = mage.PrimaryAttributes;
+
+            //Assert
+            Assert.Equal(expectedAttributes, actualAttributes);
         }
 
         [Fact]
         public void LevelUp_Ranger_HasCorrectAttributes()
         {
+            //Arrange
             RPG.Heroes.Ranger ranger = new RPG.Heroes.Ranger("Tamara");
-            ranger.LevelUp();
-            int strength = ranger.PrimaryAttributes.Strength;
-            int expectedStrength = 2;
-            int dexterity = ranger.PrimaryAttributes.Dexterity;
-            int expectedDexterity = 12;
-            int intelligence = ranger.PrimaryAttributes.Intelligence;
-            int expectedIntelligence = 2;
+            RPG.Primary expectedAttributes = new RPG.Primary();
+            expectedAttributes.Strength = 2;
+            expectedAttributes.Dexterity = 12;
+            expectedAttributes.Intelligence = 2;
 
-            Assert.Equal(strength, expectedStrength);
-            Assert.Equal(dexterity, expectedDexterity);
-            Assert.Equal(intelligence, expectedIntelligence);
+            //Act
+            ranger.LevelUp();
+            RPG.Primary actualAttributes = ranger.PrimaryAttributes;
+
+            //Assert
+            Assert.Equal(expectedAttributes, actualAttributes);
         }
 
         [Fact]
         public void LevelUp_Rogue_HasCorrectAttributes()
         {
+            //Arrange
             RPG.Heroes.Rogue rogue = new RPG.Heroes.Rogue("Tamara");
-            rogue.LevelUp();
-            int strength = rogue.PrimaryAttributes.Strength;
-            int expectedStrength = 3;
-            int dexterity = rogue.PrimaryAttributes.Dexterity;
-            int expectedDexterity = 10;
-            int intelligence = rogue.PrimaryAttributes.Intelligence;
-            int expectedIntelligence = 2;
+            RPG.Primary expectedAttributes = new RPG.Primary();
+            expectedAttributes.Strength = 3;
+            expectedAttributes.Dexterity = 10;
+            expectedAttributes.Intelligence = 2;
 
-            Assert.Equal(strength, expectedStrength);
-            Assert.Equal(dexterity, expectedDexterity);
-            Assert.Equal(intelligence, expectedIntelligence);
+            //Act
+            rogue.LevelUp();
+            RPG.Primary actualAttributes = rogue.PrimaryAttributes;
+
+            //Assert
+            Assert.Equal(expectedAttributes, actualAttributes);
         }
 
         [Fact]
         public void LevelUp_Warrior_HasCorrectAttributes()
         {
+            //Arrange
             RPG.Heroes.Warrior warrior = new RPG.Heroes.Warrior("Tamara");
-            warrior.LevelUp();
-            int strength = warrior.PrimaryAttributes.Strength;
-            int expectedStrength = 8;
-            int dexterity = warrior.PrimaryAttributes.Dexterity;
-            int expectedDexterity = 4;
-            int intelligence = warrior.PrimaryAttributes.Intelligence;
-            int expectedIntelligence = 2;
+            RPG.Primary expectedAttributes = new RPG.Primary();
+            expectedAttributes.Strength = 8;
+            expectedAttributes.Dexterity = 4;
+            expectedAttributes.Intelligence = 2;
 
-            Assert.Equal(strength, expectedStrength);
-            Assert.Equal(dexterity, expectedDexterity);
-            Assert.Equal(intelligence, expectedIntelligence);
+            //Act
+            warrior.LevelUp();
+            RPG.Primary actualAttributes = warrior.PrimaryAttributes;
+
+            //Assert
+            Assert.Equal(expectedAttributes, actualAttributes);
         }
     }
 }

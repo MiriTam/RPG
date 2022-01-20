@@ -47,11 +47,13 @@ namespace RPGTests
         [Fact]
         public void EquipItem_WeaponAboveLevel_ShouldThrowException()
         {
+            //Arrange
             RPG.Heroes.Warrior warrior = testWarrior;
             RPG.Items.Weapon level2axe = testAxe;
             testAxe.LevelRequirement = 2;
             string expectedExceptionMessage = "Level too high!";
 
+            //Act & Assert
             Exception exception = Assert.Throws<RPG.InvalidWeaponException>(() => warrior.EquipItem(level2axe, RPG.Slot.Weapon));
             Assert.Equal(exception.Message, expectedExceptionMessage);
         }
@@ -59,11 +61,13 @@ namespace RPGTests
         [Fact]
         public void EquipItem_ArmourAboveLevel_ShouldThrowException()
         {
+            //Arrange
             RPG.Heroes.Warrior warrior = testWarrior;
             RPG.Items.Armour level2plate = testPlateBody;
             level2plate.LevelRequirement = 2;
             string expectedExceptionMessage = "Level too high!";
 
+            //Act & Assert
             Exception exception = Assert.Throws<RPG.InvalidArmourException>(() => warrior.EquipItem(level2plate, RPG.Slot.Body));
             Assert.Equal(exception.Message, expectedExceptionMessage);
         }
@@ -71,10 +75,12 @@ namespace RPGTests
         [Fact]
         public void EquipItem_WrongWeaponType_ShouldThrowException()
         {
+            //Arrange
             RPG.Heroes.Warrior warrior = testWarrior;
             RPG.Items.Weapon bow = testBow;
             string expectedExceptionMessage = "Wrong weapon type!";
 
+            //Act & Assert
             Exception exception = Assert.Throws<RPG.InvalidWeaponException>(() => warrior.EquipItem(bow, RPG.Slot.Weapon));
             Assert.Equal(exception.Message, expectedExceptionMessage);
         }
@@ -82,69 +88,91 @@ namespace RPGTests
         [Fact]
         public void EquipItem_WrongArmourType_ShouldThrowException()
         {
+            //Arrange
             RPG.Heroes.Warrior warrior = testWarrior;
             RPG.Items.Armour cloth = testClothHead;
             string expectedExceptionMessage = "Wrong armour type!";
 
+            //Act & Assert
             Exception exception = Assert.Throws<RPG.InvalidArmourException>(() => warrior.EquipItem(cloth, RPG.Slot.Head));
             Assert.Equal(exception.Message, expectedExceptionMessage);
         }
 
         [Fact]
-        public void EquipItem_ValidWeapon_ShouldReturnSucessMessage()
+        public void EquipItem_ValidWeapon_ShouldReturnSuccessMessage()
         {
+            //Arrange
             RPG.Heroes.Warrior warrior = testWarrior;
             RPG.Items.Weapon axe = testAxe;
-            string message = warrior.EquipItem(axe, RPG.Slot.Weapon);
             string expectedMessage = "New weapon equiped!";
 
+            //Act
+            string message = warrior.EquipItem(axe, RPG.Slot.Weapon);
+
+            //Assert
             Assert.Equal(message, expectedMessage);
         }
 
         [Fact]
         public void EquipItem_ValidArmour_ShouldReturnSuccessMessage()
         {
+            //Arrange
             RPG.Heroes.Warrior warrior = testWarrior;
             RPG.Items.Armour plate = testPlateBody;
-            string message = warrior.EquipItem(plate, RPG.Slot.Body);
             string expectedMessage = "New armour equiped!";
 
+            //Act
+            string message = warrior.EquipItem(plate, RPG.Slot.Body);
+
+            //Assert
             Assert.Equal(message, expectedMessage);
         }
 
         [Fact]
-        public void Damage_NoWeapon_CorrectValue()
+        public void Damage_WithoutWeapon_ReturnsCorrectValue()
         {
+            //Arrange
             RPG.Heroes.Warrior warrior = testWarrior;
-            double damage = warrior.Damage();
             double expectedDamage = 1 * (1 + (5 / 100));
 
+            //Act
+            double damage = warrior.Damage();
+
+            //Assert
             Assert.Equal(damage, expectedDamage);
         }
 
         [Fact]
-        public void Damage_WithWeapon_CorrectValue()
+        public void Damage_WithWeapon_ReturnsCorrectValue()
         {
+            //Arrange
             RPG.Heroes.Warrior warrior = testWarrior;
             RPG.Items.Weapon axe = testAxe;
-            warrior.EquipItem(axe, RPG.Slot.Weapon);
-            double damage = warrior.Damage();
             double expectedDamage = (7 * 1.1) * (1 + (5 / 100));
 
+            //Act
+            warrior.EquipItem(axe, RPG.Slot.Weapon);
+            double damage = warrior.Damage();
+
+            //Assert
             Assert.Equal(damage, expectedDamage);
         }
 
         [Fact]
-        void Damage_WithWeaponAndArmour_CorrectValue()
+        void Damage_WithWeaponAndArmour_ReturnsCorrectValue()
         {
+            //Arrange
             RPG.Heroes.Warrior warrior = testWarrior;
             RPG.Items.Weapon axe = testAxe;
             RPG.Items.Armour plate = testPlateBody;
+            double expectedDamage = (7 * 1.1) * (1 + ((5 + 1) / 100));
+
+            //Act
             warrior.EquipItem(axe, RPG.Slot.Weapon);
             warrior.EquipItem(plate, RPG.Slot.Body);
             double damage = warrior.Damage();
-            double expectedDamage = (7 * 1.1) * (1 + ((5 + 1) / 100));
 
+            //Assert
             Assert.Equal(damage, expectedDamage);
         }
     }

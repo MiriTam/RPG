@@ -35,7 +35,7 @@ namespace RPG.Heroes
         }
 
         /// <summary>
-        /// Method used to level up a hero. Increase the hero's attributes based on 
+        /// Method used to level up a hero. Increases the hero's attributes based on 
         /// her LevelUpGain attributes.
         /// </summary>
         public void LevelUp()
@@ -72,7 +72,7 @@ namespace RPG.Heroes
         /// </summary>
         /// <param name="weapon">The weapon to be equiped.</param>
         /// <param name="slot">The slot in which to equip the weapon.</param>
-        /// <exception cref="Exception">InvalidArmourException</exception>
+        /// <exception cref="Exception">InvalidWeaponException</exception>
         private string EquipWeapon(Items.Weapon weapon, Slot slot)
         {
             if (weapon.LevelRequirement > Level)
@@ -95,13 +95,13 @@ namespace RPG.Heroes
         }
 
         /// <summary>
-        /// Method used to add armour to the hero's equipment. Throws an InvalidArmourException is the armour is of too
+        /// Method used to add armour to the hero's equipment. Throws an InvalidArmourException if the armour is of too
         /// high a level, the selected equipment slot is not for armour, or the hero is not allowed to use that type
         /// of armour.
         /// </summary>
         /// <param name="armour">The armour to be equiped.</param>
-        /// <param name="slot">The slot in which to place the armour.</param>
-        /// <exception cref="Exception"></exception>
+        /// <param name="slot">The slot in which to equip the armour.</param>
+        /// <exception cref="Exception">InvalidArmourException</exception>
         private string EquipArmour(Items.Armour armour, Slot slot)
         {
             if (armour.LevelRequirement > Level) 
