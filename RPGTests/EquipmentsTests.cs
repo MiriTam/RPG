@@ -55,7 +55,8 @@ namespace RPGTests
 
             //Act & Assert
             Exception exception = Assert.Throws<RPG.InvalidWeaponException>(() => warrior.EquipItem(level2axe, RPG.Slot.Weapon));
-            Assert.Equal(exception.Message, expectedExceptionMessage);
+            string actualExceptionMessage = exception.Message;
+            Assert.Equal(expectedExceptionMessage, actualExceptionMessage);
         }
 
         [Fact]
@@ -69,7 +70,8 @@ namespace RPGTests
 
             //Act & Assert
             Exception exception = Assert.Throws<RPG.InvalidArmourException>(() => warrior.EquipItem(level2plate, RPG.Slot.Body));
-            Assert.Equal(exception.Message, expectedExceptionMessage);
+            string actualExceptionMessage = exception.Message;
+            Assert.Equal(expectedExceptionMessage, actualExceptionMessage);
         }
 
         [Fact]
@@ -82,7 +84,8 @@ namespace RPGTests
 
             //Act & Assert
             Exception exception = Assert.Throws<RPG.InvalidWeaponException>(() => warrior.EquipItem(bow, RPG.Slot.Weapon));
-            Assert.Equal(exception.Message, expectedExceptionMessage);
+            string actualExceptionMessage = exception.Message;
+            Assert.Equal(expectedExceptionMessage, actualExceptionMessage);
         }
 
         [Fact]
@@ -95,7 +98,8 @@ namespace RPGTests
 
             //Act & Assert
             Exception exception = Assert.Throws<RPG.InvalidArmourException>(() => warrior.EquipItem(cloth, RPG.Slot.Head));
-            Assert.Equal(exception.Message, expectedExceptionMessage);
+            string actualExceptionMessage = exception.Message;
+            Assert.Equal(expectedExceptionMessage, actualExceptionMessage);
         }
 
         [Fact]
@@ -174,6 +178,34 @@ namespace RPGTests
 
             //Assert
             Assert.Equal(damage, expectedDamage);
+        }
+
+        [Fact]
+        public void EquipItem_WeaponInWrongSlot_ShouldThrowException()
+        {
+            //Arrange
+            RPG.Heroes.Warrior warrior = testWarrior;
+            RPG.Items.Weapon axe = testAxe;
+            string expectedMessage = "Not a weapon slot!";
+
+            //Act & Assert
+            Exception exception = Assert.Throws<RPG.InvalidWeaponException>(() => warrior.EquipItem(axe, RPG.Slot.Head));
+            string actualMessage = exception.Message;
+            Assert.Equal(actualMessage, expectedMessage);
+        }
+
+        [Fact]
+        public void EquipItem_ArmourInWrongSlot_ShouldThrowException()
+        {
+            //Arrange
+            RPG.Heroes.Warrior warrior = testWarrior;
+            RPG.Items.Armour plate = testPlateBody;
+            string expectedMessage = "Not an armour slot!";
+
+            //Act & Assert
+            Exception exception = Assert.Throws<RPG.InvalidArmourException>(() => warrior.EquipItem(plate, RPG.Slot.Weapon));
+            string actualMessage = exception.Message;
+            Assert.Equal(actualMessage, expectedMessage);
         }
     }
 }
